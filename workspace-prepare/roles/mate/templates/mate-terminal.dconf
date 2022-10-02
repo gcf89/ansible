@@ -1,0 +1,12 @@
+[/]
+background-color='#2AAA2AAA2AAA'
+bold-color='#72729F9FCFCF'
+default-size-columns=132
+default-size-rows=43
+foreground-color='#D3D3D7D7CFCF'
+palette='#000000000000:#FAE048C148C1:#4E4D9A9A0605:#C4C3A0A00000:#34346564A4A3:#7575504F7B7B:#060598979A9A:#D3D3D7D6CFCF:#555457565352:#EFEF29282928:#8A89E2E23434:#FCFBE9E84F4F:#72729F9ECFCF:#ADAC7F7EA8A8:#3434E2E2E2E2:#EEEDEEEDECEB'
+title='Mate Terminal'
+title-mode='replace'
+use-custom-default-size=true
+use-system-font=false
+visible-name='Default'

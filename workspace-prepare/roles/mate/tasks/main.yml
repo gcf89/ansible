@@ -1,0 +1,5 @@
+# Run under user: needs dbus active session
+- name: Restore mate-terminal config
+  shell: dconf load -f /org/mate/terminal/profiles/default/ < mate-terminal.dconf
+  tags:
+    - mate-terminal

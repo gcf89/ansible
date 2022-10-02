@@ -1,0 +1,41 @@
+- name: Set custom PS1
+  become: true
+  lineinfile:
+    path: "{{ item.homedir }}/.bashrc"
+    line: "{{ item.ps1 }}"
+  with_items: "{{ users }}"
+  tags:
+    - bash
+
+- name: Set perms
+  become: true
+  file:
+    path: "{{ item.homedir }}/.bashrc"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: '0644'
+  with_items: "{{ users }}"
+  tags:
+    - bash
+
+- name: Configure bashrc
+  vars:
+    lines:
+      - "stty -ixon"
+      - "alias bashrc='vim ~/.bashrc'"
+      - "alias vimrc='vim ~/.vimrc'"
+      - "alias rm='rm -i'"
+      - "alias cp='cp -i'"
+      - "alias mv='mv -i'"
+      - 'export PS1="\[\e[01;32m\]\u\[\e[m\]\[\e[01;32m\]@\[\e[m\]\[\e[01;32m\]\h\[\e[m\] \[\e[01;36m\]\w\[\e[m\]\[\e[01;36m\]:\[\e[m\]\n$ "'
+      - 'export PS1="\[\e[01;31m\]\u\[\e[m\]\[\e[01;31m\]@\[\e[m\]\[\e[01;31m\]\h\[\e[m\] \[\e[01;36m\]\w\[\e[m\]\[\e[01;36m\]:\[\e[m\]\n# "'
+  lineinfile:
+    path: "{{ item.0.homedir }}/.bashrc"
+    line: "{{ item.1 }}"
+    state: present
+  with_nested:
+    - "{{ users }}"
+    - "{{ lines }}"
+  tags:
+    - bash
+
